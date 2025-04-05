@@ -154,8 +154,8 @@ let h1 = document.querySelector("h1");
 //Await keyword - only in async function
 function getNum() {
     return new Promise((resolve, reject) => {
-        setTimeout(()=>{
-            let num = Math.floor(Math.random() * 10)+1;
+        setTimeout(() => {
+            let num = Math.floor(Math.random() * 10) + 1;
             console.log(num);
             resolve();
         }, 1000);
@@ -170,10 +170,13 @@ async function demo() {
     getNum();
 }
 
-//Applying Await keyword to color change function
+//Applying Await keyword to color change function and error handling
 function changeColor(color) {
-    return new Promise((resolve,reject) => {
-        setTimeout(()=>{
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let num = Math.floor(Math.random() * 10) + 1;
+            if (num < 5)
+                reject("promise rejected");
             h1.style.color = color;
             console.log("Color changed to", color);
             resolve();
@@ -182,7 +185,15 @@ function changeColor(color) {
 }
 
 async function colordemo() {
-    await changeColor("orange");
-    await changeColor("blue");
-    changeColor("green");
-} 
+    try {
+        await changeColor("orange");
+        await changeColor("blue");
+        await changeColor("green");
+        await changeColor("teal");
+    } catch(err){
+        console.log("Error was caught");
+        console.log(err);
+    }
+    let a = 5;
+    console.log(a + 10);
+}
