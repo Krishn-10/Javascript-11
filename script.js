@@ -35,14 +35,14 @@
 //Callback hell which is not sensible
 let h1 = document.querySelector("h1");
 
-function changeColor(color, delay) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            h1.style.color = color;
-            resolve("1st color change");
-        }, delay);
-    });
-}
+// function changeColor(color, delay) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             h1.style.color = color;
+//             resolve("1st color change");
+//         }, delay);
+//     });
+// }
 
 // changeColor("orange", 1000)
 //     .then(()=>{
@@ -130,22 +130,59 @@ function changeColor(color, delay) {
 
 
 //Async function
-async function greet() {
-    // throw "Error 404";
-    return "Hellow World";
+// async function greet() {
+//     // throw "Error 404";
+//     return "Hellow World";
+// }
+
+// greet()
+//  .then((result)=>{
+//     console.log("Promise was resolve");
+//     console.log("Data save : ", result);
+//  })
+//  .catch((err)=>{
+//     console.log("Promise was rejected");
+//     console.log("Weak connection : ", err);
+//  })
+
+//  //async Arrow function
+// let demo = async () => {
+//     return 5;
+// }
+
+
+//Await keyword - only in async function
+function getNum() {
+    return new Promise((resolve, reject) => {
+        setTimeout(()=>{
+            let num = Math.floor(Math.random() * 10)+1;
+            console.log(num);
+            resolve();
+        }, 1000);
+    })
 }
 
-greet()
- .then((result)=>{
-    console.log("Promise was resolve");
-    console.log("Data save : ", result);
- })
- .catch((err)=>{
-    console.log("Promise was rejected");
-    console.log("Weak connection : ", err);
- })
-
- //async Arrow function
-let demo = async () => {
-    return 5;
+async function demo() {
+    await getNum();
+    await getNum();
+    await getNum();
+    await getNum();
+    getNum();
 }
+
+//Applying Await keyword to color change function
+function changeColor(color) {
+    return new Promise((resolve,reject) => {
+        setTimeout(()=>{
+            h1.style.color = color;
+            console.log("Color changed to", color);
+            resolve();
+        }, 1000);
+    })
+}
+
+async function colordemo() {
+    await changeColor("orange");
+    await changeColor("blue");
+    changeColor("green");
+} 
