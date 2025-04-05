@@ -44,22 +44,22 @@ function changeColor(color, delay) {
     });
 }
 
-changeColor("orange", 1000)
-    .then(()=>{
-        console.log("2nd color change");
-        return changeColor("yellow", 1000);
-    })
-    .then(()=>{
-        console.log("3rd color change");
-        return changeColor("red", 1000);
-    })
-    .then(()=>{
-        console.log("4th color change");
-        return changeColor("green", 1000);
-    })
-    .catch(()=>{
-        console.log("Color change failed");
-    })
+// changeColor("orange", 1000)
+//     .then(()=>{
+//         console.log("2nd color change");
+//         return changeColor("yellow", 1000);
+//     })
+//     .then(()=>{
+//         console.log("3rd color change");
+//         return changeColor("red", 1000);
+//     })
+//     .then(()=>{
+//         console.log("4th color change");
+//         return changeColor("green", 1000);
+//     })
+//     .catch(()=>{
+//         console.log("Color change failed");
+//     })
 
 // changeColor("red", 1000, () => {
 //     changeColor("orange", 1000, () => {
@@ -127,3 +127,25 @@ changeColor("orange", 1000)
 //     .catch((error) => {
 //         console.log("Promise was rejected");
 //     })
+
+
+//Async function
+async function greet() {
+    // throw "Error 404";
+    return "Hellow World";
+}
+
+greet()
+ .then((result)=>{
+    console.log("Promise was resolve");
+    console.log("Data save : ", result);
+ })
+ .catch((err)=>{
+    console.log("Promise was rejected");
+    console.log("Weak connection : ", err);
+ })
+
+ //async Arrow function
+let demo = async () => {
+    return 5;
+}
