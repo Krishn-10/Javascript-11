@@ -16,18 +16,33 @@
 //     }
 // });
 
-let url = "https://dog.ceo/api/breeds/image/random";
-let img = document.querySelector("img");
-let button = document.querySelector("button");
+// let url = "https://dog.ceo/api/breeds/image/random";
+// let img = document.querySelector("img");
+// let button = document.querySelector("button");
 
-button.addEventListener("click", 
-    async function getIamges() {
+// button.addEventListener("click", 
+//     async function getIamges() {
+//     try {
+//         let res = await axios.get(url);
+//         console.log(res);
+//         img.src = res.data.message;
+//     }
+//     catch(err) {
+//         console.log("Error : ", err);
+//     }
+// });
+
+//Sending headers using Axios
+
+let url = "https://icanhazdadjoke.com/";
+
+async function getJokes() {
     try {
-        let res = await axios.get(url);
-        console.log(res);
-        img.src = res.data.message;
+        const configHeader= {headers: {Accept : "application/json"}} 
+        let res = await axios.get(url, configHeader);
+        console.log(res.data.joke);
     }
-    catch(err) {
-        console.log("Error : ", err);
+    catch(e) {
+        console.log("Error : ", e);
     }
-});
+} 
