@@ -1,3 +1,14 @@
 * {
     text-align: center;
+    /* margin: 50px; */
+}
+
+img {
+    height: 400px;
+    width: 500px;
+    margin: 0px auto;
+}
+
+button {
+    margin-top: 20px;
 }
