@@ -34,15 +34,55 @@
 
 //Sending headers using Axios
 
-let url = "https://icanhazdadjoke.com/";
+// let url = "https://icanhazdadjoke.com/";
 
-async function getJokes() {
-    try {
-        const configHeader= {headers: {Accept : "application/json"}} 
-        let res = await axios.get(url, configHeader);
-        console.log(res.data.joke);
+// async function getJokes() {
+//     try {
+//         const configHeader= {headers: {Accept : "text/plain"}} 
+//         let res = await axios.get(url, configHeader);
+//         console.log(res.data);
+//     }
+//     catch(e) {
+//         console.log("Error : ", e);
+//     }
+// }
+
+
+//Query Strings Activity - University Search
+let url = "http://universities.hipolabs.com/search?country=";
+let list = document.querySelector("p");
+let inp = document.querySelector("input");
+let btn = document.querySelector("button");
+
+
+
+btn.addEventListener("click", async () => {
+    let country = inp.value;
+    let colleges = await getColleges(country);
+    
+    show(colleges);
+})
+
+function show(colleges) {
+    let list = document.querySelector("ul");
+    list.innerText = "";
+    for(college of colleges){
+        // console.log(college.name);
+        let li = document.createElement("li");
+        li.innerText = college.name;
+        list.appendChild(li);
+    }
+}
+
+
+async function getColleges(country) {
+    try{
+        
+        let res = await axios.get(url+country);
+        return res.data;
     }
     catch(e) {
         console.log("Error : ", e);
+        return [];
     }
-} 
+}
